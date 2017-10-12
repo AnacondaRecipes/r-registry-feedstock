@@ -12,15 +12,22 @@ source:
   url:
     - https://cran.r-project.org/src/contrib/registry_{{ version }}.tar.gz
     - https://cran.r-project.org/src/contrib/Archive/registry/registry_{{ version }}.tar.gz
-
   sha256: 58a5c43b8012ca5e509fa29a8daf6f24f097b8eb021a723f6a9c33db1dd3f430
 
+
+  # patches:
+   # List any patch files here
+   # - fix.patch
+
 build:
+  # If this is a new build for the same version, increment the build number.
   number: 0
-  skip: true  # [win32]
+
+  # This is required to make R link correctly on Linux.
   rpaths:
     - lib/R/lib/
     - lib/
+
 
 requirements:
   build:
@@ -31,16 +38,45 @@ requirements:
 
 test:
   commands:
-    - $R -e "library('registry')"  # [not win]
+    # You can put additional test commands to be run here.
+    - $R -e "library('registry')"           # [not win]
     - "\"%R%\" -e \"library('registry')\""  # [win]
+
+  # You can also put a file called run_test.py, run_test.sh, or run_test.bat
+  # in the recipe that will be run at test time.
+
+  # requires:
+    # Put any additional test requirements here.
 
 about:
   home: https://CRAN.R-project.org/package=registry
-  license: GPL 2.0
-  license_family: GPL
+  license: GPL-2
   summary: Provides a generic infrastructure for creating and using registries.
+  license_family: GPL2
 
 extra:
   recipe-maintainers:
     - johanneskoester
     - bgruening
+    - mingwandroid
+
+# The original CRAN metadata for this package was:
+
+# Package: registry
+# Type: Package
+# Title: Infrastructure for R Package Registries
+# Version: 0.3
+# Author: David Meyer
+# Maintainer: David Meyer <David.Meyer@R-project.org>
+# Description: Provides a generic infrastructure for creating and using registries.
+# Depends: R (>= 2.6.0)
+# Imports: utils
+# License: GPL-2
+# NeedsCompilation: no
+# Packaged: 2015-07-07 16:27:02 UTC; david
+# Repository: CRAN
+# Date/Publication: 2015-07-08 17:11:04
+
+# See
+# http://docs.continuum.io/conda/build.html for
+# more information about meta.yaml
