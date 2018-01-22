@@ -10,8 +10,8 @@ package:
 source:
   fn: registry_{{ version }}.tar.gz
   url:
-    - https://cran.r-project.org/src/contrib/registry_{{ version }}.tar.gz
-    - https://cran.r-project.org/src/contrib/Archive/registry/registry_{{ version }}.tar.gz
+    - {{ cran_mirror }}/src/contrib/registry_{{ version }}.tar.gz
+    - {{ cran_mirror }}/src/contrib/Archive/registry/registry_{{ version }}.tar.gz
   sha256: 5d8be59ba791987b2400e9e8eaaac614cd544c1aece785ec4782ea6d5ea00efb
 
 
